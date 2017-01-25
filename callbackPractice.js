@@ -1,16 +1,16 @@
 /* In this repo your job is to write functions to make each function call work properly.
-Below is a sample problem 
+Below is a sample problem
 
   //code here for sayHi
 
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay);
    });
-   
 
-and what you should write is the sayHi function that makes the code above work, 
-    
-    
+
+and what you should write is the sayHi function that makes the code above work,
+
+
    var sayHi = function(str, cb){
     cb(str);
    }
@@ -18,14 +18,15 @@ and what you should write is the sayHi function that makes the code above work,
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay); //should alert ('Hi Katie')'
    });
-    
-    
+
+
 */
 
 
+function first (list, doToList){
+  doToList(list[0]);
+}
 
-  //Code Here for first
-  
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -39,7 +40,10 @@ first(names, function(firstName){
 
 
 
-  //Code Here for last
+function last(list, doToList){
+  var lastIndex = list.length -1;
+  doToList(list[lastIndex]);
+}
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -52,11 +56,9 @@ last(names, function(lastName){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
-
-
-  //Code Here for multiply
+function multiply(num1, num2, displayAns){
+  displayAns(num1*num2);
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -69,10 +71,14 @@ multiply(4, 3, function(answer){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
-
-  //Code Here for contains
+function contains(list, searchFor, finalAction){
+  var resIndex = list.indexOf(searchFor);
+  var result=false;
+  if(resIndex>=0){
+    result=true;
+  }
+  finalAction(result);
+}
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -89,24 +95,31 @@ contains(names, 'Colt', function(result){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
-    //Code Here for uniq
+function uniq(list, func){
+  var newArray = [];
+  list.forEach(function(item){
+    if(newArray.indexOf(item)===-1){
+      newArray.push(item);
+    }
+  });
+  func(newArray);
+}
 
 uniq(names, function(uniqArr){
+  console.log('original array',names);
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
 });
-
-
 
 
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
-    //Code Here for each
+function each(list, doToList){
+  list.forEach(function(item, index){
+    doToList(item,index);
+  });
+}
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -119,10 +132,22 @@ each(names, function(item, indice){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
+// getUserById(list, id, action){
+//   //find id in list and then post perform action with that user data
+//   list.forEach(function(user,index){
+//     if(user[index].id===id){
+//       action(user[index]);
+//     }
+//   });
+// };
 
-
-
- //code here for getUserById
+function getUserById(list, id, action){
+  list.forEach(function(user,index){
+    if(user.id===id){
+      action(list[index]);
+    }
+  });
+}
 
 var users = [
   {
@@ -146,5 +171,5 @@ var users = [
 ];
 
 getUserById(users, '16t', function(user){
-  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address); 
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address);
 });
