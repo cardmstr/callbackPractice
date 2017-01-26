@@ -148,6 +148,24 @@ function getUserById(list, id, action){
     }
   });
 }
+// Jake Guss's code **annotated**
+// function getUserById(object, id, cb) {
+//   var user = {};
+//     for (var i = 0; i < object.length; i++) {
+//       //for (var users.id in object) { //when i=0 you're already able to access the first user using: object[i], this loop isn't needed.
+//       if(object[i].id === id){
+//         cb(object[i]); //by returning the object at index i you don't need to worry about pushing it all to a new object
+//       }
+//       //   if (users.id == id) {
+//       //     user.push(object.email);
+//       //     user.push(object.name);
+//       //     user.push(object.address);
+//       //     return user;
+//       //   }
+//       // }
+//     }
+//     // cb(user); //the callback placed in the if statement above will prevent the callback from being run on an undefined object
+// }
 
 var users = [
   {
